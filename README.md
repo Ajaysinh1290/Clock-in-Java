@@ -10,11 +10,11 @@
 
 # Youtube Demo
 
-[<img src="ss.png" />](https://youtu.be/SfP581CTuUo)
+[<img src="screenshots/home.png" />](https://youtu.be/SfP581CTuUo)
 
 # Screen Shots
 
-<img src="screenshots/home.png">
+
 <img src="screenshots/alarms.png">
 <img src="screenshots/setalarm.png">
 <img src="screenshots/stopwatch.png">

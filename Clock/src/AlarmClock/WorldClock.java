@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -26,10 +29,11 @@ public class WorldClock extends JFrame implements ActionListener,KeyListener
 	private JPanel contentPane;
 	private JButton searchcity;
 	private JButton back;
+	String timeofcity="Asia/Kolkata";
 	private JComboBox cityname;
 	private JLabel citytime;
 	private static String timezonecityname[];
-	SimpleDateFormat dateformat=new SimpleDateFormat("hh:mm:ss a");
+	DateTimeFormatter dateformat=DateTimeFormatter.ofPattern("hh:mm:ss a");
 	Date date=new Date();
 	private JLabel lblWorldClock;
 	private JLabel timemessage;
@@ -43,6 +47,8 @@ public class WorldClock extends JFrame implements ActionListener,KeyListener
 				try {
 					WorldClock frame = new WorldClock();
 					frame.setVisible(true);
+					frame.setLocation(100,100);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,6 +60,7 @@ public class WorldClock extends JFrame implements ActionListener,KeyListener
 	 * Create the frame.
 	 */
 	public WorldClock() {
+		
 		Timer timer=new Timer(1000,this);
 		timer.start();
 		addKeyListener(this);
@@ -61,7 +68,7 @@ public class WorldClock extends JFrame implements ActionListener,KeyListener
 		setResizable(false);
 		setTitle("World Clock");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setSize(500, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -121,33 +128,30 @@ public class WorldClock extends JFrame implements ActionListener,KeyListener
 		contentPane.add(back);
 		String timeofcity=(String) cityname.getSelectedItem();
 		
-		dateformat.setTimeZone(TimeZone.getTimeZone(timeofcity));
-		String timezone=dateformat.format(date);
 		
 		citytime.setText("Current Time of "+timeofcity+" is " );
-		timemessage.setText(timezone);
+		timemessage.setText(LocalTime.now(ZoneId.of(timeofcity)).format(dateformat));
+
 		
 	}
 	public void actionPerformed(ActionEvent e)
 	{
 		
+		timemessage.setText(LocalTime.now(ZoneId.of(timeofcity)).format(dateformat));
 	
 		if(e.getSource()==searchcity)
 		{
 		
-			String timeofcity=(String) cityname.getSelectedItem();
-		
-		dateformat.setTimeZone(TimeZone.getTimeZone(timeofcity));
-		String timezone=dateformat.format(date);
-		
+			 timeofcity=(String) cityname.getSelectedItem();
 		citytime.setText("Current Time of "+timeofcity+" is " );
-		timemessage.setText(timezone);
+		timemessage.setText(LocalTime.now(ZoneId.of(timeofcity)).format(dateformat));
 		
 		}
 		if(e.getSource()==back)
 		{
 			main m=new main();
 			m.setVisible(true);
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 			
@@ -161,6 +165,7 @@ public class WorldClock extends JFrame implements ActionListener,KeyListener
 		{
 			main m=new main();
 			m.setVisible(true);
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 	}

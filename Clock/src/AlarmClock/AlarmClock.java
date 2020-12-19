@@ -58,6 +58,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 				try {
 					frame = new AlarmClock();
 					frame.setVisible(true);
+					frame.setLocation(100,100);
 				    }
 				catch (Exception e) 
 				{
@@ -75,6 +76,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 	 */
 	
 	public AlarmClock() {
+		
 		setResizable(false);
 		addKeyListener(this);
 		setFocusable(true);
@@ -82,7 +84,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 		Timer timer=new Timer(1000,this);
 		timer.start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setSize(500, 500);
 		setTitle("Alarm Clock");
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
@@ -331,11 +333,11 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 		
 			if(j==0)
 			{
-					fw=new FileWriter("./alarmfile.txt",false);
+					fw=new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",false);
 			}
 			else
 			{
-				fw=new FileWriter("./alarmfile.txt",true);
+				fw=new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",true);
 			}
 			BufferedWriter bf=new BufferedWriter(fw);
 			fw.write(alarmtimesort[j]+"\n");
@@ -354,7 +356,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 	alarmnumber=0;
 	try
 	{
-	FileReader fread=new FileReader("./alarmfile.txt");
+	FileReader fread=new FileReader("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt");
 	BufferedReader bfr=new BufferedReader(fread);
 	
 	while((alarmfromfile[alarmnumber]=bfr.readLine())!=null&&alarmnumber<6)
@@ -399,6 +401,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 				
 			main m=new main();
 			m.setVisible(true);
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 			}
 		if(now.getHour()>=12)
@@ -443,7 +446,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 	
 			
 			AlarmRing ar=new AlarmRing(alarmtimeforring.substring(0, 11),"Alarm is Ringing...",musicnumber);
-	
+			ar.setLocation(this.getX()+80,this.getY()+100);
 			ar.setVisible(true);
 			
 			
@@ -464,6 +467,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 				Date date=new Date();
 				String str=sw.format(date)+" 0";
 				SetAlarm sframe = new SetAlarm(str,false);
+				sframe.setLocation(this.getX(),this.getY());
 				sframe.setVisible(true);
 			
 			
@@ -498,11 +502,11 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 				{
 					if(j==0)
 					{
-							fw=new FileWriter("./alarmfile.txt",false);
+							fw=new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",false);
 					}
 					else
 					{
-						fw=new FileWriter("./alarmfile.txt",true);
+						fw=new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",true);
 					}
 					BufferedWriter bf=new BufferedWriter(fw);
 					fw.write(alarmfromfile[j]+"\n");
@@ -523,6 +527,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 			}
 			
 			SetAlarm s=new SetAlarm(alarmfromfile[i],true);
+			s.setLocation(this.getX(),this.getY());
 			s.setVisible(true);
 			this.dispose();
 			
@@ -542,11 +547,11 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 				try {
 				if(j==0)
 				{
-					fw = new FileWriter("./alarmfile.txt",false);
+					fw = new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",false);
 				}
 				else
 				{
-					fw = new FileWriter("./alarmfile.txt",true);
+					fw = new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",true);
 				}
 				BufferedWriter bf=new BufferedWriter(fw);
 				if(i!=j&&set[j].getText()=="Edit")
@@ -567,6 +572,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 			}
 			AlarmClock main=new AlarmClock();
 			main.setVisible(true);
+			main.setLocation(this.getX(),this.getY());
 			this.dispose();
 		
 		
@@ -585,6 +591,7 @@ public class AlarmClock extends JFrame implements ActionListener,KeyListener
 		{
 			main m=new main();
 			m.setVisible(true);
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 	}

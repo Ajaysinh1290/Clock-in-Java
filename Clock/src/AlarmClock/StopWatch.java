@@ -46,6 +46,8 @@ public class StopWatch extends JFrame implements ActionListener,KeyListener
 				try {
 					StopWatch frame = new StopWatch();
 					frame.setVisible(true);
+					frame.setLocation(100,100);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,6 +59,7 @@ public class StopWatch extends JFrame implements ActionListener,KeyListener
 	 * Create the frame.
 	 */
 	public StopWatch() {
+		
 		addKeyListener(this);
 		setFocusable(true);
 		Timer timer=new Timer(10,this);
@@ -64,7 +67,7 @@ public class StopWatch extends JFrame implements ActionListener,KeyListener
 		setTitle("Stopwatch");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setSize(500, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -325,6 +328,7 @@ public class StopWatch extends JFrame implements ActionListener,KeyListener
 			{
 				main m=new main();
 				m.setVisible(true);
+				m.setLocation(this.getX(),this.getY());
 				this.dispose();
 			}
 		}
@@ -339,6 +343,7 @@ public class StopWatch extends JFrame implements ActionListener,KeyListener
 			
 			main m=new main();
 			m.setVisible(true);	
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 		

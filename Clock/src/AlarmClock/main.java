@@ -27,10 +27,14 @@ public class main extends JFrame implements ActionListener {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+			
 			public void run() {
 				try {
 					 frame = new main();
-					frame.setVisible(true);
+					 frame.setVisible(true);
+
+						frame.setLocation(100,100);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,11 +47,13 @@ public class main extends JFrame implements ActionListener {
 	 */
 	public main() 
 	{
+		
 		Timer ti=new Timer(1000,this);
 		ti.start();
+		setResizable(false);
 		setTitle("Clock");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setSize(500, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setForeground(new Color(0, 0, 0));
@@ -134,24 +140,29 @@ public class main extends JFrame implements ActionListener {
 		{
 			WorldClock wd=new WorldClock();
 			wd.setVisible(true);
+			wd.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 		if(e.getSource()==alarm)
 		{
 			AlarmClock cd=new AlarmClock();
 			cd.setVisible(true);
+			cd.setLocation(this.getX(), this.getY());
 			this.dispose();
+			
 		}
 		if(e.getSource()==timer)
 		{
 			Timerclock tc=new Timerclock();
 			tc.setVisible(true);
+			tc.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 		if(e.getSource()==stopwatch)
 		{
 			StopWatch sw=new StopWatch();
 			sw.setVisible(true);
+			sw.setLocation(this.getX(),this.getY());
 			this.dispose();
 			
 		}

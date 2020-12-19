@@ -11,14 +11,14 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-public class AlarmRing extends JFrame implements ActionListener
+public class AlarmRing extends JDialog implements ActionListener
 {
 
 	private JPanel contentPane;
@@ -27,7 +27,7 @@ public class AlarmRing extends JFrame implements ActionListener
 	private static String alarmtime;
 	private String pathname[];
 	private JLabel lblTime,alarmringlabel;
-	String path="./Ringtones/";
+	String path="F:\\Home java\\alarm folder\\";
 	AudioInputStream audio;;
 	Clip player;
 	/**
@@ -39,6 +39,9 @@ public class AlarmRing extends JFrame implements ActionListener
 				try {
 					AlarmRing frame = new AlarmRing("No Alarm","Alarm type",3);
 					frame.setVisible(true);
+					frame.setLocation(100,100);
+					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,18 +56,22 @@ public class AlarmRing extends JFrame implements ActionListener
 	public AlarmRing(String stralarmtime,String clocktype,int songnumber) 
 	{
 		alarmtime=stralarmtime;
+		
+		
+		this.setResizable(false);
 		Timer timer=new Timer(400,this);
 		timer.start();
-		setTitle("AlarmRing");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(180, 200, 350, 250);
+//		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("Music Player");
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(350, 250);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		File f=new File("./Ringtones");
+		File f=new File("F:\\Home java\\alarm folder");
 		pathname=f.list();
 		
 		path=path+pathname[songnumber];
@@ -103,13 +110,15 @@ public class AlarmRing extends JFrame implements ActionListener
 		}
 
 		catch(Exception ee)
+		
 		{
 			
 			System.out.println("Exception");
 		}
-	
-	}
 
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -156,4 +165,6 @@ public class AlarmRing extends JFrame implements ActionListener
 	{
 		alarmtime=stralarmtime;
 	}
+
+
 }

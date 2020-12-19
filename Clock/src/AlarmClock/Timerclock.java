@@ -46,7 +46,10 @@ public class Timerclock extends JFrame implements ActionListener,KeyListener
 			public void run() {
 				try {
 					Timerclock frame = new Timerclock();
+					frame.setLocation(100,100);
 					frame.setVisible(true);
+					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,14 +61,15 @@ public class Timerclock extends JFrame implements ActionListener,KeyListener
 	 * Create the frame.
 	 */
 	public Timerclock() {
+		
 		addKeyListener(this);
 		setFocusable(true);
-		
+		this.setResizable(false);
 		Timer timer=new Timer(1000,this);
 		timer.start();
 		setTitle("Timer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setSize(500, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -178,12 +182,15 @@ public class Timerclock extends JFrame implements ActionListener,KeyListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		// TODO Auto-generated method stub
+		
+		
 		if(e.getSource()==btnback)
 		{
 			if(btnback.getText()=="Back")
 			{
 			main m=new main();
 			m.setVisible(true);
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 			}
 			else if(btnback.getText()=="Pause")
@@ -289,6 +296,8 @@ public class Timerclock extends JFrame implements ActionListener,KeyListener
 				String time=hourcombo.getSelectedItem()+":"+minutecombo.getSelectedItem()+":"+secondcombo.getSelectedItem();
 				AlarmRing ar=new AlarmRing(time,"Timer done",6);
 				ar.setVisible(true);
+				ar.setLocation(this.getX()+80,this.getY()+100);
+				
 				alarmstart=false;
 				btnback.setText("Back");
 				btnback.setForeground(new Color(255, 255, 255));
@@ -385,6 +394,7 @@ public class Timerclock extends JFrame implements ActionListener,KeyListener
 		{
 			main m=new main();
 			m.setVisible(true);
+			m.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 	}

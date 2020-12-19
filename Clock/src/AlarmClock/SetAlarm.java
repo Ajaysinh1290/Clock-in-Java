@@ -53,6 +53,8 @@ public class SetAlarm extends JFrame implements ActionListener
 					Date date=new Date();
 					String str=sw.format(date)+" 0";
 					SetAlarm frame = new SetAlarm(str,false);
+					frame.setLocation(100,100);
+
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,13 +69,15 @@ public class SetAlarm extends JFrame implements ActionListener
 	public SetAlarm(String alarmtime,boolean streditalarm)
 	{
 		
+		
 		super("Alarm Clock");
+		
 		stralarmtime=alarmtime;
 		editalarm=streditalarm;
 		Timer timer=new Timer(1000,this);
 		timer.start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setSize(500, 500);
 	
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
@@ -81,7 +85,7 @@ public class SetAlarm extends JFrame implements ActionListener
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		File f=new File("./Ringtones");
+		File f=new File("F:\\Home java\\alarm folder");
 		pathname=f.list();
 		
 		 hourcombo = new JComboBox(hourarr);
@@ -163,7 +167,7 @@ public class SetAlarm extends JFrame implements ActionListener
 		musiclist.setSelectedIndex(Integer.parseInt(alarmtime.substring(12,alarmtime.length())));
 		try
 		{
-		FileReader fr=new FileReader("./alarmfile.txt");
+		FileReader fr=new FileReader("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clockalarmfile.txt");
 		BufferedReader br=new BufferedReader(fr);
 	
 		while(br.readLine()!=null)
@@ -214,7 +218,7 @@ public class SetAlarm extends JFrame implements ActionListener
 			if(playpause.getText()=="Play")
 			{
 				AlarmRing r=new AlarmRing("Playing Music...",pathname[musiclist.getSelectedIndex()],musiclist.getSelectedIndex());
-				
+				r.setLocation(this.getX()+80,this.getY()+100);
 				r.setVisible(true);
 				
 			}
@@ -226,7 +230,7 @@ public class SetAlarm extends JFrame implements ActionListener
 			editalarm=false;
 			try
 			{
-			FileWriter fr=new FileWriter("./alarmfile.txt",true);
+			FileWriter fr=new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",true);
 			BufferedWriter bw=new BufferedWriter(fr);
 			fr.write(alarm+"\n");
 			fr.close();
@@ -239,6 +243,7 @@ public class SetAlarm extends JFrame implements ActionListener
 			
 			AlarmClock ac=new AlarmClock();
 			ac.setVisible(true);
+			ac.setLocation(this.getX(),this.getY());
 			this.dispose();
 			
 			
@@ -254,7 +259,7 @@ public class SetAlarm extends JFrame implements ActionListener
 			{
 				try
 				{
-						FileWriter fw=new FileWriter("./alarmfile.txt",true);
+						FileWriter fw=new FileWriter("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Clock\\alarmfile.txt",true);
 				
 							
 						BufferedWriter bf=new BufferedWriter(fw);
@@ -272,6 +277,7 @@ public class SetAlarm extends JFrame implements ActionListener
 			
 			AlarmClock ac=new AlarmClock();
 			ac.setVisible(true);
+			ac.setLocation(this.getX(),this.getY());
 			this.dispose();
 		}
 		
